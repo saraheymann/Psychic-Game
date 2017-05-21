@@ -2,62 +2,22 @@
 <html>
 <head>
 	<title>Psychic Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+
 </head>
 <body>
+<header>
+	<img src="assets/images/psychic-reader-led-sign.gif">
+</header>
+<section>
 <p>Guess what Letter I'm Thinking Of</p>
 <div id="wins">Wins:</div>
 <div id="losses">Losses:</div>
 <div id="guessesLeft">Guesses Left:</div>
 <div id="userGuessID">Your Guesses So Far:</div>
+</section>
 </body>
-<script type="text/javascript">
-
-var charOptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o','p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-// var compLetter = charOptions[randomLetter];
-var userGuess = '';
-var wrongLetters = [];
-var numWins = 0;
-var numLosses = 0;
-var maxGuesses = 9;
-
-document.onkeyup = function(event) {
-    // Determines which key was selected. Makes it lowercase
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    var randomLetter = Math.floor(Math.random()* charOptions.length);
-    var compLetter = charOptions[randomLetter];
-    wrongLetters.push(userGuess);
-    if (userGuess === compLetter){
-    numWins ++;
-    document.getElementById('wins').innerHTML = 'Wins: ' + numWins;
-    reset();
-	}
-	else if(userGuess !== compLetter){
-    	maxGuesses --;
-    	document.getElementById('userGuessID').innerHTML = 'Your Guesses So Far: ' + wrongLetters;
-    	document.getElementById('guessesLeft').innerHTML = 'Guesses Left: ' + maxGuesses;
-    }
-    else if(maxGuesses >= 0){
-    	numLosses++;
-    	document.getElementById('losses').innerHTML = 'Losses: ' + numLosses;
-    	reset();
-
-    }
-    var reset = function(){
-    	maxGuesses = 9;
-    	wrongLetters = [];
-    }
-    	
-}
-
-// reset to begining state
-// function reset() {
-// var randomLetter = Math.floor(Math.random()* charOptions.length);
-// var compLetter = charOptions[randomLetter];
-// var userGuess = '';
-// var wrongLetters = '';
-// var maxGuesses = 9;
-// }
-
-
+<script type="text/javascript" src="assets/javascript/game.js">
 </script>
 </html>

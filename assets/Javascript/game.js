@@ -1,51 +1,35 @@
-var charOptions = ['abcdefghijklmnopqrstuvwxyz'];
-var charArray = charOptions.split('');
-var compLetter = '';
-var charArray = [];
-var wins = '';
-var losses = '';
-var userGuess = 9;
+var charOptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o','p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+// var compLetter = charOptions[randomLetter];
+var userGuess = '';
+var wrongLetters = [];
+var numWins = 0;
+var numLosses = 0;
+var maxGuesses = 9;
 
-// picking the computer's letter
-function pickCharOptions{
-	compLetter = charArray[Math.floor(Math.random() * charArray.length)];
+document.onkeyup = function(event) {
+    // Determines which key was selected. Makes it lowercase
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    var randomLetter = Math.floor(Math.random()* charOptions.length);
+    var compLetter = charOptions[randomLetter];
+    wrongLetters.push(userGuess);
+
+    if (userGuess === compLetter){
+    numWins ++;
+    document.getElementById('wins').innerHTML = 'Wins: ' + numWins;
+    maxGuesses = 9;
+    wrongLetters = [];
+	}
+	else if(userGuess !== compLetter){
+    	maxGuesses --;
+    	document.getElementById('userGuessID').innerHTML = 'Your Guesses So Far: ' + wrongLetters;
+    	document.getElementById('guessesLeft').innerHTML = 'Guesses Left: ' + maxGuesses;
+    }
+   if(maxGuesses === 0){
+    	numLosses++;
+    	document.getElementById('losses').innerHTML = 'Losses: ' + numLosses;
+    	maxGuesses = 9;
+    	wrongLetters = [];
+
+    }
+    	
 }
-
-
-// funcion hideCompWord(){
-
-// 	for (var i = 0; i < charOptions.length; i++) {
-// 		charOptions[i]
-// 	}
-// 	}
-// }
-
-// function gameStart(){
-// 	// computer picks a letter
-// 	// user guesses when they press a key
-// 	// displays userGuess
-// 	// 
-// }
-
-
-
-
-// gameStart();
-// document.onkeyup = function(event){
-// 	userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-// 	if(userGuess.match(/[a-zA-Z]/)){
-//         if (isNewGame()) {
-//             gameStart();
-//         } else if (isPlaying()) {
-//             showPlay();
-//             if (wonGame()) {
-//                 showWin();
-//                 reset();
-//             } else if (gameOver()) {
-//                 showLoss();
-//                 reset();
-//             }
-//         }
-//     }
-// }
-// }
